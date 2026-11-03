@@ -107,3 +107,8 @@ $('#download').onclick=async()=>{
 
 };
 render();
+
+const menuToggle=document.querySelector('#menuToggle'),sidebar=document.querySelector('#sidebar');
+function setMenu(open){document.body.classList.toggle('menu-collapsed',!open);sidebar.inert=!open;menuToggle.setAttribute('aria-expanded',String(open));menuToggle.setAttribute('aria-label',open?'Menüyü kapat':'Menüyü aç');}
+menuToggle.addEventListener('click',()=>setMenu(document.body.classList.contains('menu-collapsed')));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!document.body.classList.contains('menu-collapsed')&&!document.querySelector('dialog[open]')){setMenu(false);menuToggle.focus();}});
